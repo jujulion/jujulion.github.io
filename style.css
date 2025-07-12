@@ -1,0 +1,381 @@
+     * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111;
+            --bg-gradient-1: rgba(15, 15, 15, 0.9);
+            --bg-gradient-2: rgba(5, 5, 5, 0.95);
+            --bg-gradient-3: rgba(20, 20, 20, 0.9);
+            --bg-gradient-4: rgba(10, 10, 10, 0.95);
+            --text-primary: #fff;
+            --text-secondary: #ccc;
+            --text-accent: #f0f0f0;
+            --star-color-1: #fff;
+            --star-color-2: #ccc;
+            --star-color-3: #ddd;
+            --star-color-4: #bbb;
+            --star-color-5: #aaa;
+            --border-color: #fff;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f5f5f5;
+                --bg-secondary: #eee;
+                --bg-gradient-1: rgba(240, 240, 240, 0.9);
+                --bg-gradient-2: rgba(250, 250, 250, 0.95);
+                --bg-gradient-3: rgba(235, 235, 235, 0.9);
+                --bg-gradient-4: rgba(245, 245, 245, 0.95);
+                --text-primary: #000;
+                --text-secondary: #333;
+                --text-accent: #0f0f0f;
+                --star-color-1: #000;
+                --star-color-2: #333;
+                --star-color-3: #222;
+                --star-color-4: #444;
+                --star-color-5: #555;
+                --border-color: #000;
+                --shadow-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            font-weight: normal;
+            overflow-x: hidden;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Parallax Container */
+        .parallax-container {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Parallax Layers */
+        .parallax-layer {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            transition: transform 0.1s ease-out;
+        }
+
+        .parallax-layer:nth-child(1) {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, var(--star-color-1), transparent),
+                radial-gradient(1px 1px at 40% 70%, var(--star-color-2), transparent),
+                radial-gradient(1px 1px at 90% 40%, var(--star-color-1), transparent),
+                radial-gradient(2px 2px at 60% 10%, var(--star-color-3), transparent),
+                radial-gradient(1px 1px at 10% 80%, var(--star-color-1), transparent);
+            background-size: 200px 200px, 150px 150px, 300px 300px, 250px 250px, 180px 180px;
+        }
+
+        .parallax-layer:nth-child(2) {
+            background-image: 
+                radial-gradient(1px 1px at 80% 20%, var(--star-color-1), transparent),
+                radial-gradient(2px 2px at 30% 60%, var(--star-color-4), transparent),
+                radial-gradient(1px 1px at 70% 90%, var(--star-color-1), transparent),
+                radial-gradient(1px 1px at 15% 40%, var(--star-color-3), transparent),
+                radial-gradient(2px 2px at 85% 70%, var(--star-color-2), transparent);
+            background-size: 180px 180px, 220px 220px, 160px 160px, 280px 280px, 200px 200px;
+        }
+
+        .parallax-layer:nth-child(3) {
+            background-image: 
+                radial-gradient(1px 1px at 50% 50%, var(--star-color-1), transparent),
+                radial-gradient(2px 2px at 25% 80%, var(--star-color-5), transparent),
+                radial-gradient(1px 1px at 75% 30%, var(--star-color-1), transparent),
+                radial-gradient(1px 1px at 95% 60%, var(--star-color-3), transparent),
+                radial-gradient(2px 2px at 5% 20%, var(--star-color-2), transparent);
+            background-size: 240px 240px, 170px 170px, 190px 190px, 210px 210px, 160px 160px;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Left Side - Name Display */
+        .left-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+            padding: 20px;
+        }
+
+        .name-display {
+            text-align: center;
+            position: relative;
+            z-index: 5;
+            transition: transform 0.1s ease-out;
+        }
+
+        .name-display h1 {
+            font-size: clamp(2rem, 8vw, 8rem);
+            font-weight: 900;
+            letter-spacing: normal;
+            color: var(--text-primary);
+            text-shadow: 0 0 20px var(--shadow-color);
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .name-display .subtitle {
+            font-size: clamp(0.8rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            letter-spacing: normal;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            letter-spacing: normal;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .theme-toggle:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Right Side - Navigation */
+        .right-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 clamp(20px, 8vw, 60px);
+            background: linear-gradient(135deg, var(--bg-gradient-3), var(--bg-gradient-4));
+            position: relative;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin: clamp(15px, 3vw, 25px) 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
+            font-weight: 600;
+            letter-spacing: normal;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-menu a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--text-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-accent);
+            transform: translateX(10px);
+        }
+
+        .nav-menu a:hover::before {
+            width: 100%;
+        }
+
+        /* Content Sections */
+        .content-section {
+            min-height: 100vh;
+            padding: clamp(40px, 8vw, 80px) clamp(20px, 8vw, 60px);
+            background: var(--bg-secondary);
+        }
+
+        .content-section h2 {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .content-section p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: inline-block;
+            margin: 10px 20px 10px 0;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 24px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: normal;
+        }
+
+        .social-link:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .name-display h1 {
+                font-size: clamp(2.5rem, 10vw, 6rem);
+            }
+            
+            .nav-menu a {
+                font-size: clamp(1.8rem, 4vw, 2.2rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .left-side, .right-side {
+                flex: none;
+                min-height: 50vh;
+            }
+            
+            .left-side {
+                padding: 40px 20px;
+            }
+            
+            .right-side {
+                padding: 40px 20px;
+            }
+            
+            .nav-menu li {
+                margin: 20px 0;
+            }
+            
+            .nav-menu a {
+                font-size: clamp(1.5rem, 6vw, 2rem);
+            }
+            
+            .content-section {
+                padding: 60px 20px;
+            }
+            
+            .social-link {
+                display: block;
+                margin: 15px 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name-display h1 {
+                font-size: clamp(2rem, 12vw, 4rem);
+                line-height: 1.1;
+            }
+            
+            .theme-toggle {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-menu a {
+                font-size: clamp(1.3rem, 7vw, 1.8rem);
+            }
+            
+            .content-section {
+                padding: 40px 15px;
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .main-container {
+                flex-direction: row;
+            }
+            
+            .left-side, .right-side {
+                flex: 1;
+                min-height: 100vh;
+            }
+        }
+
+        /* Dark theme override */
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111;
+            --bg-gradient-1: rgba(15, 15, 15, 0.9);
+            --bg-gradient-2: rgba(5, 5, 5, 0.95);
+            --bg-gradient-3: rgba(20, 20, 20, 0.9);
+            --bg-gradient-4: rgba(10, 10, 10, 0.95);
+            --text-primary: #fff;
+            --text-secondary: #ccc;
+            --text-accent: #f0f0f0;
+            --star-color-1: #fff;
+            --star-color-2: #ccc;
+            --star-color-3: #ddd;
+            --star-color-4: #bbb;
+            --star-color-5: #aaa;
+            --border-color: #fff;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Light theme override */
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #eee;
+            --bg-gradient-1: rgba(240, 240, 240, 0.9);
+            --bg-gradient-2: rgba(250, 250, 250, 0.95);
+            --bg-gradient-3: rgba(235, 235, 235, 0.9);
+            --bg-gradient-4: rgba(245, 245, 245, 0.95);
+            --text-primary: #000;
+            --text-secondary: #333;
+            --text-accent: #0f0f0f;
+            --star-color-1: #000;
+            --star-color-2: #333;
+            --star-color-3: #222;
+            --star-color-4: #444;
+            --star-color-5: #555;
+            --border-color: #000;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SIERRA STALLONE</title>
+</head>
+<body>
+    <div class="parallax-container">
+        <div class="parallax-layer"></div>
+        <div class="parallax-layer"></div>
+        <div class="parallax-layer"></div>
+        
+        <div class="main-container">
+            <div class="left-side">
+                <div class="name-display">
+                    <h1>SIERRA<br>STALLONE</h1>
+                    <p class="subtitle">by Jazz Al-Badr</p>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <span id="theme-text">LIGHT MODE</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="right-side">
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#about">HOME & ABOUT</a></li>
+                        <li><a href="#projects">PROJECTS</a></li>
+                        <li><a href="#writing">WRITING WORK</a></li>
+                        <li><a href="#creativity">CREATIVITY</a></li>
+                        <li><a href="#contact">CONTACT</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="content-section">
+        <h2>ABOUT</h2>
+        <p>
+            The Sierra Stallone project is a (placeholder) name for what my works are packaged under. I want it to stand for people who have been brainwashed to (unfortunately) believe that you can essentially only do one thing with your life––one career, one art form, etc. It also, obviously, exists to be enjoyed by anyone and everyone!!
+        </p>
+    </section>
+
+    <section id="projects" class="content-section">
+        <h2>PROJECTS</h2>
+        <p>Coming soon...</p>
+    </section>
+
+    <section id="writing" class="content-section">
+        <h2>WRITING WORK</h2>
+        <p>Coming soon...</p>
+    </section>
+
+    <section id="creativity" class="content-section">
+        <h2>CREATIVITY</h2>
+        <p>Coming soon...</p>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/sierrastallone" target="_blank" class="social-link">INSTAGRAM</a>
+            <a href="#" class="social-link">BLUESKY</a>
+            <a href="#" class="social-link">TWITTER</a>
+            <a href="#" class="social-link">BANDCAMP</a>
+        </div>
+    </section>
+
+    <section id="contact" class="content-section">
+        <h2>HOW YOU CAN HELP</h2>
+        <p>
+            WORK HARD AND PRODUCE THINGS. NO MATTER WHAT THEY ARE. ACADEMIA, ART, MUSIC, WRITING, JUST MAKE IT. THERE IS NO SUCH THING AS A WASTE OF TIME WHEN IT COMES TO THESE––THE INTERNET ALLOWS US TO FINALLY COMMUNICATE CONCEPTS AND CREATIVE IDEAS IN A FASHION NEVER SEEN BEFORE. IT IS OUR DUTY TO CONTINUE TO PRODUCE, IF EVEN AN OUNCE OF WHAT YOU CREATE CAUSES INSPIRATION, MOTIVATION, OR SPARKS ANY FORM OF INTEREST OR THOUGHT, IT IS FAR MORE IMPORTANT TO HUMANITY THAN YOU THINK.
+        </p>
+        <p>
+            One of the best things an individual can do for their mental health is to create. It is cathartic and, generally, beautiful. Do it!
+        </p>
+    </section>
+
+    <script>
+        let isDarkMode = true;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            isDarkMode = false;
+            document.getElementById('theme-text').textContent = 'DARK MODE';
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+            if (!document.documentElement.hasAttribute('data-theme')) {
+                isDarkMode = e.matches;
+                document.getElementById('theme-text').textContent = isDarkMode ? 'LIGHT MODE' : 'DARK MODE';
+            }
+        });
+        
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('theme-text').textContent = 'LIGHT MODE';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.getElementById('theme-text').textContent = 'DARK MODE';
+            }
+        }
+
+        document.addEventListener('mousemove', function(e) {
+            const layers = document.querySelectorAll('.parallax-layer');
+            const nameDisplay = document.querySelector('.name-display');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            layers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.03;
+                const x = (mouseX - centerX) * speed;
+                const y = (mouseY - centerY) * speed;
+                
+                layer.style.transform = `translate(${x}px, ${y}px)`;
+            });
+            
+            // Move the Sierra Stallone text
+            const textSpeed = 0.05;
+            const textX = (mouseX - centerX) * textSpeed;
+            const textY = (mouseY - centerY) * textSpeed;
+            nameDisplay.style.transform = `translate(${textX}px, ${textY}px)`;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add subtle parallax effect on scroll
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxLayers = document.querySelectorAll('.parallax-layer');
+            
+            parallaxLayers.forEach((layer, index) => {
+                const speed = (index + 1) * 0.3;
+                layer.style.transform += ` translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
